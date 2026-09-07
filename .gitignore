@@ -28,3 +28,5 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+# Pasta de imagens antigas (não versionar)
+imagens/Antigo/

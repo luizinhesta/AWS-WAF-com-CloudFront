@@ -1,11 +1,10 @@
-# AWS WAF Security Lab — Projeto 01
-
-## Proteção contra XSS com CloudFront e Amazon S3
+# AWS WAF com Cloud Front - Proteção contra XSS com CloudFront e Amazon S3
 
 Laboratório educacional que demonstra, de forma prática e controlada, a diferença entre uma aplicação **SEM AWS WAF** e uma aplicação **COM AWS WAF**, usando **Cross-Site Scripting (XSS)** como teste principal.
 
 > Primeiro projeto de uma série de laboratórios sobre AWS WAF.
 
+![Descrição da imagem](<imagens/imagem%20(1).png>)
 ---
 
 ## Objetivo
@@ -21,6 +20,8 @@ O endpoint COM WAF tem **duas proteções**:
 2. **Geo-bloqueio** (`Block-Fora-do-Brasil`) — bloqueia **qualquer** requisição de fora do Brasil e responde com uma **página HTML de acesso negado** personalizada (`site/acesso-negado.html`). Para demonstrar, acesse o COM WAF por uma **VPN** ou **instância em outro país**.
 
 O teste de XSS é executado **exclusivamente contra os seus próprios endpoints** de laboratório. É um teste defensivo: mostra o WAF **bloqueando** um padrão de ataque, sem explorar nenhuma vítima.
+
+![Descrição da imagem](<imagens/imagem%20(5).png>)
 
 ### O que este laboratório NÃO faz
 
@@ -56,6 +57,8 @@ Payload usado no teste:
 | AWS WAF | 1 Web ACL (`waf-lab-xss`) + 2 regras: XSS (`Block-XSS-Lab`) e geo-bloqueio (`Block-Fora-do-Brasil`) com resposta HTML personalizada |
 | Amazon S3 | Bucket privado de origem (a mesma origem para as duas distribuições) |
 | Amazon CloudWatch | Métricas e requisições amostradas do WAF |
+
+![Descrição da imagem](<imagens/imagem%20(4).png>)
 
 ---
 
@@ -133,19 +136,3 @@ COM WAF
 
 ---
 
-## Custos (leia antes de começar)
-
-O **AWS WAF não possui gratuidade permanente**. Ele cobra por Web ACL, por regra e por milhão de requisições avaliadas, enquanto existir. Este laboratório usa o mínimo de recursos (1 Web ACL + 2 regras: XSS e geo-bloqueio + poucas requisições) e evita recursos premium.
-
-- ACM é gratuito para uso em CloudFront.
-- CloudFront e S3 têm uso mínimo neste lab.
-- Route 53 cobra pela zona hospedada (que você provavelmente já possui).
-- **A Web ACL do WAF é o principal custo contínuo — exclua-a ao terminar.**
-
-A seção final de [IMPLANTACAO.md](IMPLANTACAO.md) traz o passo a passo de **exclusão de todos os recursos**.
-
----
-
-## Uso responsável
-
-Execute os testes **somente** contra os dois endpoints deste laboratório (`site-sem-waf.SEU-DOMINIO.com` e `site-com-waf.SEU-DOMINIO.com`). Não execute ataques contra terceiros e não gere flood, stress test ou DDoS.
